@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>特定社労士 過去問シアター</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="特定社労士試験（紛争解決手続代理業務試験）第15回〜第21回の事例問題を、解説動画と音声で振り返る学習ページ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=IBM+Plex+Mono:wght@500&family=Shippori+Mincho+B1:wght@600;800&display=swap">
+<style>
+/* レイアウト概念：事件記録の綴り ― 日付印のヒーロー → 出題年表 → 事件ファイル（左：動画・音声／右：起案用紙の争点メモ） */
+:root{
+  /* 色（明るい背景で統一） */
+  --paper:#f1f3f7;      /* 台紙：わずかに藍に寄せた灰 */
+  --sheet:#ffffff;      /* 書面 */
+  --ink:#172033;        /* 墨 */
+  --ink-2:#4a5468;
+  --ink-3:#768096;
+  --rule:#d6dce7;       /* 罫線 */
+  --rule-soft:#e7ebf2;
+  --ai:#1f3e86;         /* 藍：主アクセント */
+  --ai-soft:#e5ebf8;
+  --shu:#c03f2b;        /* 朱：日付印だけに使う */
+  --x:#0e6876;          /* 申請人（労働者）側 */
+  --x-soft:#e2f1f3;
+  --y:#87570f;          /* 被申請人（会社）側 */
+  --y-soft:#f5ecdc;
+  --screen:#0f1522;
+  /* 書体 */
+  --f-display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  /* 寸法 */
+  --line:1.9rem;        /* 起案用紙の行送り */
+  --wrap:1120px;
+  --radius:6px;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.8;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sheet)}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;line-height:1.3;text-wrap:balance;margin:0;color:var(--ink)}
+p{margin:0}
+a{color:var(--ai)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--ai);outline-offset:2px;border-radius:3px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--ink-2)}
+
+/* ── ヘッダー ── */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--sheet);border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;align-items:center;gap:16px;min-height:56px}
+.brand{font-family:var(--f-display);font-weight:800;font-size:1rem;text-decoration:none;color:var(--ink);white-space:nowrap}
+.brand small{font-family:var(--f-body);font-weight:700;font-size:.7rem;color:var(--ink-3);letter-spacing:.08em;margin-right:6px}
+.jump{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none;min-width:0}
+.jump::-webkit-scrollbar{display:none}
+.jump a{flex:none;display:inline-flex;align-items:baseline;gap:1px;padding:4px 9px;border-radius:4px;text-decoration:none;color:var(--ink-2);font-size:.82rem}
+.jump a b{font-family:var(--f-mono);font-weight:500;font-size:.95rem;color:var(--ink)}
+.jump a:hover{background:var(--ai-soft);color:var(--ai)}
+.jump a.done b{color:var(--ai)}
+.jump a.done::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--ai);align-self:center;margin-left:4px}
+.progress{flex:none;font-size:.78rem;color:var(--ink-2);white-space:nowrap}
+.progress .mono{color:var(--ink);font-size:.9rem}
+@media (max-width:640px){.progress{display:none}.brand small{display:none}}
+
+/* ── ヒーロー ── */
+.hero{background:var(--sheet);border-bottom:1px solid var(--rule)}
+.hero .wrap{padding-block:56px 48px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px 56px;align-items:center}
+.hero h1{font-size:clamp(2.3rem,6vw,4.2rem);letter-spacing:.02em;margin-top:14px}
+.hero h1 span{display:block;font-size:.42em;letter-spacing:.12em;color:var(--ai);margin-bottom:.35em}
+.lead{margin-top:20px;max-width:36em;color:var(--ink-2);font-size:1.02rem}
+.stats{display:flex;flex-wrap:wrap;gap:0;margin:28px 0 0;padding:0}
+.stats div{padding:4px 24px 4px 0;margin-right:24px;border-right:1px solid var(--rule)}
+.stats div:last-child{border-right:0;margin-right:0}
+.stats dt{font-size:.75rem;color:var(--ink-3);letter-spacing:.08em}
+.stats dd{margin:0;font-size:1.05rem;font-weight:700}
+.stats dd .mono{font-size:1.25rem}
+@media (max-width:480px){.stats div{padding-right:12px;margin-right:12px}.stats dd{font-size:.92rem}.stats dd .mono{font-size:1.1rem}}
+
+/* 日付印（受付印）風カウントダウン */
+.stamp{--s:220px;width:var(--s);height:var(--s);border-radius:50%;border:3px solid var(--shu);color:var(--shu);display:grid;grid-template-rows:1fr auto 1fr;text-align:center;position:relative;transform:rotate(-6deg);background:var(--sheet);box-shadow:inset 0 0 0 5px var(--sheet),inset 0 0 0 6px var(--shu)}
+.stamp .s-top{align-self:end;padding:0 26px 8px;font-family:var(--f-display);font-weight:800;font-size:1.02rem;line-height:1.3}
+.stamp .s-mid{border-block:2px solid var(--shu);padding:6px 0;font-family:var(--f-mono);font-size:1.12rem;letter-spacing:.04em}
+.stamp .s-bot{align-self:start;padding-top:6px;font-family:var(--f-display);font-weight:800;font-size:1.05rem;line-height:1.1}
+.stamp .s-bot b{font-family:var(--f-mono);font-weight:500;font-size:2.5rem;letter-spacing:-.02em;margin:0 2px;vertical-align:-3px}
+.stamp-cap{margin-top:14px;text-align:center;font-size:.78rem;color:var(--ink-3)}
+@media (max-width:820px){.hero .wrap{grid-template-columns:minmax(0,1fr);padding-block:36px 36px}.stamp-box{justify-self:center}.stamp{--s:196px}}
+
+/* 試験の基本 */
+.facts{background:var(--paper);border-bottom:1px solid var(--rule)}
+.facts .wrap{padding-block:20px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 28px}
+.facts div{min-width:0}
+.facts dt{font-size:.74rem;color:var(--ink-3);letter-spacing:.06em}
+.facts dd{margin:2px 0 0;font-size:.92rem;line-height:1.6}
+@media (max-width:820px){.facts .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:440px){.facts .wrap{grid-template-columns:minmax(0,1fr)}}
+
+/* ── セクション共通 ── */
+section.block{padding-block:64px 8px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-bottom:24px}
+.sec-head h2{font-size:clamp(1.5rem,3.4vw,2rem)}
+.sec-head p{color:var(--ink-2);font-size:.95rem}
+
+/* 使い方 */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;counter-reset:st}
+.steps li{counter-increment:st;background:var(--sheet);border:1px solid var(--rule);border-radius:var(--radius);padding:20px 22px;min-width:0}
+.steps li::before{content:"手順 " counter(st);display:block;font-size:.74rem;font-weight:700;letter-spacing:.12em;color:var(--ai);margin-bottom:6px}
+.steps h3{font-size:1.15rem;margin-bottom:6px}
+.steps p{font-size:.92rem;color:var(--ink-2);line-height:1.75}
+@media (max-width:760px){.steps{grid-template-columns:minmax(0,1fr)}}
+
+/* 出題年表 */
+.timeline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));position:relative}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:15px;height:2px;background:var(--rule)}
+.timeline li{position:relative;padding:0 10px 0 0;min-width:0}
+.timeline .node{width:32px;height:32px;border-radius:50%;background:var(--sheet);border:2px solid var(--ai);display:grid;place-items:center;font-family:var(--f-mono);font-size:.82rem;color:var(--ai);position:relative}
+.timeline li.gap .node{border-style:dashed;border-color:var(--ink-3);color:var(--ink-3)}
+.timeline li.done .node{background:var(--ai);color:var(--sheet)}
+.timeline .t-year{margin-top:10px;font-size:.74rem;color:var(--ink-3)}
+.timeline .t-type{margin-top:2px;font-weight:700;font-size:.92rem;line-height:1.45}
+.timeline li.gap .t-type{font-weight:400;color:var(--ink-3)}
+.timeline a{display:block;text-decoration:none;color:inherit;border-radius:4px}
+.timeline a:hover .t-type{color:var(--ai);text-decoration:underline;text-underline-offset:3px}
+.tl-note{margin-top:22px;font-size:.92rem;color:var(--ink-2);max-width:48em}
+@media (max-width:760px){
+  .timeline{grid-template-columns:minmax(0,1fr);gap:0}
+  .timeline::before{left:15px;right:auto;top:8px;bottom:8px;width:2px;height:auto}
+  .timeline li{padding:0 0 14px}
+  .timeline a,.timeline .row{display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:14px;align-items:start}
+  .timeline .t-year{margin-top:0;grid-column:2;grid-row:1}
+  .timeline .node{grid-row:1/span 2}
+  .timeline .t-type{grid-column:2}
+}
+
+/* ── 事件ファイル ── */
+.cases{display:grid;gap:40px;padding-bottom:24px}
+.case{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden}
+.case-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px 22px;align-items:center;padding:22px 26px;border-bottom:1px solid var(--rule)}
+.case-no{font-family:var(--f-display);font-weight:800;line-height:1;text-align:center;border:2px solid var(--ink);padding:8px 10px 7px;min-width:78px}
+.case-no small{display:block;font-size:.66rem;letter-spacing:.12em;margin-bottom:4px;font-family:var(--f-body);font-weight:700}
+.case-no b{font-family:var(--f-mono);font-weight:500;font-size:2rem;letter-spacing:-.02em}
+.case-meta{min-width:0}
+.case-meta .tags{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:.8rem;color:var(--ink-3)}
+.tag{display:inline-block;padding:1px 9px;border-radius:3px;background:var(--ai-soft);color:var(--ai);font-weight:700;font-size:.78rem}
+.tag.muted{background:var(--rule-soft);color:var(--ink-2)}
+.case-meta h3{font-size:clamp(1.2rem,2.6vw,1.55rem);margin-top:6px}
+.checks{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.check{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--rule);border-radius:999px;background:var(--sheet);font-size:.8rem;color:var(--ink-2);cursor:pointer}
+.check::before{content:"";width:14px;height:14px;border:1.5px solid var(--ink-3);border-radius:3px;flex:none}
+.check[aria-pressed="true"]{border-color:var(--ai);color:var(--ai);background:var(--ai-soft)}
+.check[aria-pressed="true"]::before{background:var(--ai) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3 7.4l2.6 2.5L11 4.4' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E") center/12px no-repeat;border-color:var(--ai)}
+.check:disabled{opacity:.45;cursor:not-allowed}
+@media (max-width:760px){
+  .case-head{grid-template-columns:auto minmax(0,1fr);padding:18px 16px}
+  .checks{grid-column:1/-1;justify-content:flex-start}
+}
+
+.case-body{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)}
+@media (max-width:940px){.case-body{grid-template-columns:minmax(0,1fr)}}
+.media{padding:24px 26px;display:flex;flex-direction:column;gap:16px;border-right:1px solid var(--rule);min-width:0}
+@media (max-width:940px){.media{border-right:0;border-bottom:1px solid var(--rule)}}
+@media (max-width:760px){.media{padding:16px}}
+.hook{font-family:var(--f-display);font-weight:600;font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.hook::before{content:"問い　";font-family:var(--f-body);font-weight:700;font-size:.74rem;letter-spacing:.1em;color:var(--ai);vertical-align:2px}
+.vid{position:relative;width:100%;max-width:100%;aspect-ratio:16/9;background:var(--screen);border-radius:4px;overflow:hidden}
+.vid video{display:block;width:100%;height:100%;object-fit:contain;background:var(--screen)}
+.vid-missing{position:absolute;inset:0;display:grid;place-content:center;gap:6px;text-align:center;padding:16px;background:repeating-linear-gradient(-45deg,var(--rule-soft) 0 12px,var(--paper) 12px 24px);color:var(--ink-2);font-size:.88rem}
+.vid-missing b{font-family:var(--f-display);font-size:1.05rem;color:var(--ink)}
+.vid-missing code{font-family:var(--f-mono);font-size:.8rem;background:var(--sheet);padding:2px 8px;border-radius:3px;border:1px solid var(--rule);word-break:break-all}
+.media-label{display:flex;justify-content:space-between;gap:8px;font-size:.78rem;color:var(--ink-3);margin-bottom:-8px}
+.media-label .mono{color:var(--ink-2)}
+
+/* 音声プレーヤー */
+.aud{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:center;padding:14px 16px;border:1px solid var(--rule);border-radius:var(--radius);background:var(--paper)}
+.aud-btn{grid-row:1/span 2;width:48px;height:48px;border-radius:50%;border:0;background:var(--ai);color:var(--sheet);display:grid;place-items:center;cursor:pointer}
+.aud-btn:hover{filter:brightness(1.12)}
+.aud-btn svg{width:20px;height:20px;fill:currentColor}
+.aud-btn .i-pause{display:none}
+.aud.playing .aud-btn .i-play{display:none}
+.aud.playing .aud-btn .i-pause{display:block}
+.aud-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:.84rem;min-width:0}
+.aud-row strong{font-weight:700;color:var(--ink)}
+.aud-time{color:var(--ink-2);font-size:.82rem;white-space:nowrap}
+.aud-seek{width:100%;margin:0;accent-color:var(--ai);height:22px;cursor:pointer}
+.aud-err{grid-column:1/-1;font-size:.82rem;color:var(--shu)}
+.tools{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:.8rem;color:var(--ink-3)}
+.speed{display:inline-flex;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--sheet)}
+.speed button{border:0;background:transparent;padding:4px 10px;cursor:pointer;font-family:var(--f-mono);font-size:.8rem;color:var(--ink-2)}
+.speed button+button{border-left:1px solid var(--rule)}
+.speed button[aria-pressed="true"]{background:var(--ai);color:var(--sheet)}
+.resume{border:1px dashed var(--ai);background:var(--ai-soft);color:var(--ai);border-radius:4px;padding:3px 10px;font-size:.8rem;cursor:pointer}
+
+/* 争点メモ（起案用紙） */
+.memo{padding:var(--line) 26px var(--line);min-width:0;background-color:var(--sheet);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--line) - 1px),var(--rule-soft) calc(var(--line) - 1px),var(--rule-soft) var(--line));background-position:0 var(--line);line-height:var(--line);font-size:.93rem}
+@media (max-width:760px){.memo{padding-left:16px;padding-right:16px}}
+.memo h4{margin:0;font-size:.78rem;letter-spacing:.12em;font-weight:700;color:var(--ink-3);line-height:var(--line)}
+.memo p,.memo ul{margin:0}
+.memo ul{padding-left:1.1em}
+.memo li::marker{color:var(--ink-3)}
+.memo > * + *{margin-top:var(--line)}
+.side{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 18px}
+@media (max-width:560px){.side{grid-template-columns:minmax(0,1fr)}.side .y{margin-top:var(--line)}}
+.side h4 span{display:inline-block;padding:0 8px;border-radius:3px;line-height:1.5rem;font-size:.76rem;letter-spacing:.06em}
+.side .x h4 span{background:var(--x-soft);color:var(--x)}
+.side .y h4 span{background:var(--y-soft);color:var(--y)}
+.side .x li::marker{color:var(--x)}
+.side .y li::marker{color:var(--y)}
+.frame{display:flex;flex-wrap:wrap;gap:0 6px;list-style:none;padding:0!important}
+.frame li{display:inline-block;padding:0 9px;border:1px solid var(--rule);border-radius:3px;background:var(--sheet);line-height:1.55rem;font-size:.84rem;margin-block:calc((var(--line) - 1.55rem - 2px)/2)}
+.bonus{font-size:.86rem;color:var(--ink-2)}
+.bonus b{color:var(--ai)}
+
+/* 自分の起案メモ */
+.mine{border-top:1px solid var(--rule);background:var(--paper)}
+.mine summary{cursor:pointer;padding:14px 26px;font-weight:700;font-size:.9rem;color:var(--ink);list-style:none;display:flex;gap:10px;align-items:center}
+.mine summary::-webkit-details-marker{display:none}
+.mine summary::before{content:"";width:8px;height:8px;border-right:2px solid var(--ink-2);border-bottom:2px solid var(--ink-2);transform:rotate(-45deg);transition:transform .15s}
+.mine[open] summary::before{transform:rotate(45deg)}
+.mine summary small{font-weight:400;color:var(--ink-3);font-size:.78rem}
+.mine-body{padding:0 26px 22px}
+@media (max-width:760px){.mine summary{padding:14px 16px}.mine-body{padding:0 16px 18px}}
+.mine textarea{width:100%;min-height:calc(var(--line) * 8 + 2px);resize:vertical;border:1px solid var(--rule);border-radius:4px;padding:0 14px;font:inherit;font-size:.93rem;line-height:var(--line);color:var(--ink);background-color:var(--sheet);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--line) - 1px),var(--rule-soft) calc(var(--line) - 1px),var(--rule-soft) var(--line));background-attachment:local}
+.mine textarea::placeholder{color:var(--ink-3)}
+.mine-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:8px;font-size:.78rem;color:var(--ink-3)}
+.copy{border:1px solid var(--rule);background:var(--sheet);border-radius:4px;padding:3px 12px;font-size:.8rem;cursor:pointer;color:var(--ink-2)}
+
+/* 注意書き・フッター */
+.notice{margin-top:56px;background:var(--sheet);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.notice .wrap{padding-block:28px;display:grid;grid-template-columns:minmax(0,14rem) minmax(0,1fr);gap:8px 32px}
+.notice h2{font-size:1.1rem}
+.notice p{font-size:.9rem;color:var(--ink-2);max-width:46em}
+.notice p + p{margin-top:8px}
+@media (max-width:760px){.notice .wrap{grid-template-columns:minmax(0,1fr)}}
+footer .wrap{padding-block:28px 40px;font-size:.8rem;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between}
+footer a{color:var(--ink-2)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><small>特定社労士</small>過去問シアター</a>
+    <nav class="jump" id="jump" aria-label="回ごとの事件ファイルへ移動"></nav>
+    <div class="progress" aria-live="polite">視聴チェック <span class="mono" id="prog">0/11</span></div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">紛争解決手続代理業務試験 ・ 第1問（事例）</p>
+        <h1><span>特定社労士</span>過去問シアター</h1>
+        <p class="lead">第15回から第21回までの事例問題を、6〜9分の解説動画と15〜20分の音声解説で振り返ります。動画で事案をつかみ、音声で争点を深め、XとY社の言い分を自分で整理して起案の骨子まで書けるように構成しています。</p>
+        <dl class="stats" id="stats">
+          <div><dt>収録</dt><dd><span class="mono">6</span>回分</dd></div>
+          <div><dt>解説動画</dt><dd><span class="mono" id="st-v">6</span>本 ・ 計<span class="mono" id="st-vt">43</span>分</dd></div>
+          <div><dt>音声解説</dt><dd><span class="mono" id="st-a">6</span>本 ・ 計<span id="st-at">1時間46分</span></dd></div>
+        </dl>
+      </div>
+      <div class="stamp-box">
+        <div class="stamp" role="img" id="stamp" aria-label="第22回試験 2026年11月21日まで">
+          <div class="s-top">第22回試験</div>
+          <div class="s-mid">2026.11.21 土</div>
+          <div class="s-bot" id="stamp-bot">あと<b id="days">--</b>日</div>
+        </div>
+        <p class="stamp-cap">令和8年度 紛争解決手続代理業務試験</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="facts">
+    <dl class="wrap">
+      <div><dt>配点</dt><dd>第1問（事例）70点 ／ 第2問（倫理）30点</dd></div>
+      <div><dt>第21回の合格基準</dt><dd>55点以上、かつ第2問10点以上</dd></div>
+      <div><dt>第21回の結果</dt><dd>受験1,041人 ・ 合格526人（<span class="mono">50.5</span>％）</dd></div>
+      <div><dt>第22回の合格発表</dt><dd>2027年3月12日（金）予定</dd></div>
+    </dl>
+  </div>
+
+  <section class="block" aria-labelledby="h-steps">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="h-steps">このページの使い方</h2><p>1回分あたり約25分。通勤の往復で1回分が回せます。</p></div>
+      <ol class="steps">
+        <li><h3>動画で事案をつかむ</h3><p>6〜9分の解説動画で、登場人物・時系列・対立点を俯瞰します。最後に出る「問い」を頭に置いておきます。</p></li>
+        <li><h3>音声で争点を深める</h3><p>15〜20分の音声解説を、移動中に1.25〜1.5倍速で。Xの言い分とY社の言い分がどこでぶつかるかを聞き分けます。</p></li>
+        <li><h3>自分で起案の骨子を書く</h3><p>各ファイル下の「自分の起案メモ」に、求めるあっせんの内容、理由、相手方の主張への認否の骨子を書き出します。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-tl">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="h-tl">出題テーマの流れ</h2><p>第15回（令和元年度）〜第21回（令和7年度）</p></div>
+      <ol class="timeline" id="timeline"></ol>
+      <p class="tl-note">収録した6回は、解雇が2回、雇止めが2回、退職の意思表示が1回、内定取消しが1回。いずれも労働契約の終了をめぐる紛争で、有期契約の扱いが繰り返し問われています。</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-cases">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="h-cases">事件ファイル</h2><p>左で視聴、右の争点メモで確認。再生位置と速度はこの端末に記憶されます。</p></div>
+      <div class="cases" id="cases"></div>
+    </div>
+  </section>
+
+  <section class="notice" aria-labelledby="h-notice">
+    <div class="wrap">
+      <h2 id="h-notice">素材について</h2>
+      <div>
+        <p>解説動画と音声は、AI（Gemini Notebook）で作成した学習用の要約素材です。人物の発言や事実関係は、解説のために再構成・要約されている場合があります。</p>
+        <p>問題文と出題趣旨は必ず原典で確認し、条文や判断枠組みへの当てはめは自分で行ってください。AIが下書きし、判断するのは人です。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>制作：おぶすま社会保険労務士・行政書士事務所 ／ kenjispark AI士業ラボ</span>
+    <span>試験データ出典：<a href="https://www.mhlw.go.jp/stf/newpage_70161.html" target="_blank" rel="noopener">厚生労働省（第21回 合格者）</a>・<a href="https://www.mhlw.go.jp/hourei/doc/kouji/K260914K0010.pdf" target="_blank" rel="noopener">同（第22回 告示）</a></span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   設定：メディアは同じフォルダのファイルを相対パスで参照します。
+   新しい回を追加するときは CASES に1件足し、ファイルを同じフォルダに置いてください。
+   ============================================================ */
+const MEDIA_BASE = "";           // 例："media/" にすればサブフォルダ参照
+const AUDIO_EXT = "m4a";         // 音声ファイルの拡張子（m4a を mp4 に変えて置く場合は "mp4"）
+const EXAM_DAY = "2026-11-21";   // 第22回試験日（JST）
+
+const CASES = [
+  {
+    no:15, year:"令和元年度（2019）", type:"有期契約の期間途中解雇",
+    title:"学習塾解雇事件の真相",
+    video:"15kai_shiken_ultra_small.mp4", poster:"15kai_poster.jpg", vsec:417.7,
+    audio:"15kai_shiken_small.m4a", asec:1017.3,
+    hook:"会社が縮小されるとき、「噂」を理由に合法的に解雇できるのか。",
+    facts:"学習塾を経営するY社は財政難から10校中3校の閉鎖を決定。有期契約を3回更新してきた講師Xを、契約期間（翌年3月まで）の途中で解雇した。Y社は、Xが卒論のために生徒を取材していたという保護者からの苦情も理由に挙げる。",
+    x:["有期契約社員として採用され、3回更新してきた","契約は来年3月までの期間が残っている","卒論のための生徒への取材は完全に否定。生徒を明るく励ます雑談をしていただけ","退職一時金（給料3か月分）の提示は拒否した"],
+    y:["経営難による「選択と集中」で3校を廃止","統合先の乙校の事務枠はすでに埋まっている","4月の更新時に勤務場所廃止の可能性を伝えていた","生徒を取材していると保護者から苦情。個人情報やSNS拡散のリスクがある"],
+    frame:["労契法17条1項「やむを得ない事由」","整理解雇の4要素","解雇回避努力","契約残存期間の賃金相当額"],
+    extra:"動画後半に<b>和解案のポイント</b>（復職に代えた金銭解決、契約残存期間の賃金相当額を解決金に）があります。",
+    question:"あなたが公平な労働審判官なら、どのような裁定を下しますか？"
+  },
+  {
+    no:17, year:"令和3年度（2021）", type:"雇止め（更新上限条項）",
+    title:"雇止めを巡る対立：契約書と口頭の約束が衝突する時",
+    video:"17kai_shiken_ultra_small.mp4", poster:"17kai_poster.jpg", vsec:369.4,
+    audio:"17kai_shiken_small.m4a", asec:1003.6,
+    hook:"「更新は4回まで」の契約書と、「受託が続く限り」という口頭の約束。どちらが優先するのか。",
+    facts:"2016年10月、市役所の受付案内を担う嘱託職員としてY法人に採用されたX。毎年更新され昇給もしてきたが、2020年5月にコロナの影響で業務時間が縮小。2021年7月、9月末での契約終了（雇止め）を通告された。",
+    x:["採用時に継続雇用の口頭保証を受けた（「業務の受託が継続する限りは、仕事をお願いすることになる」）","更新はスムーズで、昇給の実績もある","現場は今も2名体制が必要","更新上限は形式的なもので、雇止めは無期転換逃れの脱法行為"],
+    y:["契約書で更新は4回までと明記し、Xも合意の上で署名捺印した","コロナで来庁者が激減し、1名は余剰","他の嘱託職員にも平等に適用している方針","法逃れではなく、組織の標準的な制度"],
+    frame:["労契法19条2号（更新への合理的期待）","更新上限条項","労契法18条（無期転換）","業務上の必要性"],
+    extra:"動画後半に第2問（倫理）型の<b>ボーナス問題</b>：相手方に多額の貸付がある場合、公平な代理人になれるか。",
+    question:"企業のルールと人間の期待が衝突するとき、あなたならどう裁定しますか？"
+  },
+  {
+    no:18, year:"令和4年度（2022）", type:"雇止め（事業所閉鎖・限定雇用）",
+    title:"5年目の罠：雇止めを巡る法的対立",
+    video:"18kai_shiken_ultra_small.mp4", poster:"18kai_poster.jpg", vsec:453.0,
+    audio:"18kai_shiken_small.m4a", asec:1248.8,
+    hook:"通算5年の直前に突然の雇止め。これは本当に違法なのか。",
+    facts:"2017年7月、Y社のA事業所に倉庫事務員として1年の有期契約で採用されたX。2020年5月の第3回更新で「入札に失敗した場合は事業所閉鎖のため終了」という条件が追加された。2022年春、Y社は競合のS社に入札で敗れA事業所の閉鎖が決定し、Xは雇止めを告げられた。",
+    x:["過去4回の更新実績から「雇用継続の強い期待」がある","営業課長の「心配いらない」という言葉で、書面の条件は効力を失った","入札失敗は会社の経営責任で、労働者に責任はない","通勤圏内の他事業所へ配置転換し、雇用を継続すべき"],
+    y:["当初からA事業所限りの「限定雇用」と説明し合意している","閉鎖条件が追加された契約書に、Xは異議なく2度署名した","営業課長の言葉は希望的観測で、法的な保証ではない","限定雇用の社員を転勤させれば、雇用制度自体が崩れる"],
+    frame:["労契法19条（雇止め法理）","労契法18条（無期転換・通算5年）","閉鎖条項への合意","就業規則の「特別な事由」"],
+    extra:"",
+    question:"口頭の約束と書面の契約。この衝突で、法律はどちらを保護すべきか？"
+  },
+  {
+    no:19, year:"令和5年度（2023）", type:"退職の意思表示（錯誤取消し）",
+    title:"運命の退職願と「錯誤」の法則",
+    video:"19kai_shiken_ultra_small.mp4", poster:"19kai_poster.jpg", vsec:375.1,
+    audio:"19kai_shiken_small.m4a", asec:1123.7,
+    hook:"懲戒解雇を恐れて出した退職願は、あとから取り消せるのか。",
+    facts:"Y銀行の融資課長Xは、部下Aに対し、6月中旬にネクタイを外させて大声で叱責、7月下旬に机を叩いて暴言、8月に頭を軽く叩いた。Aはうつ病と診断され休業。懲戒解雇なら退職金なし・再就職困難と恐れたXは、自己都合の退職願を提出した。のちにXは「あの程度のパワハラでは懲戒解雇にはならないはず。間違いだったので取り消す」と主張する。",
+    x:["誤った情報による退職であり、錯誤により取り消す","月額655,000円の賃金と地位の保全を求める","退職承認の辞令は効力が発生せず無効"],
+    y:["ハラスメントは悪質で紛れもない事実（就業規則第55条違反）","退職は本人の将来を考えた温情措置","9月末日付で適法に退職願を受理・承認した"],
+    frame:["民法95条（錯誤）","事情の表示","社会通念上の重要性","懲戒処分の相当性"],
+    extra:"見落とせない事情：銀行の弁護士も「懲戒解雇は無理ではないか」と指摘していたが、銀行は退職願の提出を好機と捉え、急いで自己都合退職として処理した。",
+    question:"強いプレッシャーの下での自己都合退職は、本当に本人の選択と言えるのか？"
+  },
+  {
+    no:20, year:"令和6年度（2024）", type:"試用期間中の解雇",
+    title:"羅生門的事件：試用期間中の解雇は有効か？",
+    video:"20kai_shiken_ultra_small.mp4", poster:"20kai_poster.jpg", vsec:402.4,
+    audio:"20kai_shiken_small.m4a", asec:1068.2,
+    hook:"入社4か月の新卒社員を、6か月の試用期間中に解雇できるのか。",
+    facts:"建設・地質調査等を営むY社（従業員約1,500名、職種間の異動原則なし）に、新卒の技術職社員として入社したX（工学部卒、基本給23万円）。7月末日付で解雇を通告された。試用期間を2か月残しての解雇である。",
+    x:["作業員は3m以上離れていたので、声掛けは不要だった","助手は安全な場所にいたので問題ない","後で手袋をする予定だった。上司の早とちりとパニック","ショートは少し動かしただけ。実害はなく、すぐ復旧した"],
+    y:["声掛けせずに重いロッドの取付けを開始した。明らかなルール違反","安全確認をせずマシンを起動。あわや重大事故","素手で通電端子に触れようとした（感電死の危険）","通電中のケーブルを動かしショートさせ、工場全体が停電"],
+    frame:["留保解約権の行使","客観的に合理的な理由","社会通念上の相当性","改善の兆し","配置転換の可能性"],
+    extra:"",
+    question:"大惨事を防ぐため解雇しますか？　それともルールを曲げてデスクワークを与えますか？"
+  },
+  {
+    no:21, year:"令和7年度（2025）", type:"採用内定の取消し",
+    title:"不当な内定取り消しへの対処法",
+    video:"21kai_shiken_ultra_small.mp4", poster:"21kai_poster.jpg", vsec:546.6,
+    audio:"21kai_shiken_small.m4a", asec:907.4,
+    hook:"入社前の飲み会でのトラブルを理由に、内定を取り消せるのか。",
+    facts:"7月4日、従業員約20名の小規模企業Y社から採用内定通知書の交付を受けたX（開発職）。入社予定日の8月1日を前にした7月18日、暑気払い（飲み会）でトラブルが発生した。Y社は内定通知書の取消事由（第2項：採用面接時に虚偽の発言があったことが判明したとき／第8項：当社との信頼関係を損なう行為に及んだとき）にあたるとして、内定を取り消した。",
+    x:["前職を辞めた根本的な動機は事実であり、虚偽ではない","注意や弁明の機会を一切与えずに内定を取り消した","すでに他社の内定を辞退しており、深刻な不利益を受ける","飲み会は業務外の1回限りで、PC中心の開発職務とは無関係"],
+    y:["飲み会でリーダーへの暴言、社員への中傷やヘッドロックがあった","面接では円満退職と説明したが、実際は喧嘩退職だった（虚偽）","飲み会での暴言等は、相互の信頼と職場の安全を破壊する","約20名の小規模企業で、全員がXとの協働を拒絶しており、職場の秩序が維持できない"],
+    frame:["始期付解約権留保付労働契約","内定当時知ることができなかった事実","客観的に合理的な理由","社会通念上の相当性","弁明の機会"],
+    extra:"動画後半に<b>見通し</b>（注意や弁明の機会を与えていないため取消しは無効となる見通しが高い）と、<b>和解案</b>（公式な謝罪・飲酒の誓約・厳格な試用期間を条件とする入社、または150万円の金銭解決）があります。",
+    question:"不当な内定取消しに対し、仕事を守るために戦うか、金銭的解決を選ぶか？"
+  }
+];
+const GAPS = [{no:16, year:"令和2年度（2020）"}];
+
+/* ============================================================ */
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = sec => { sec = Math.max(0, Math.floor(sec||0)); const h=Math.floor(sec/3600), m=Math.floor(sec%3600/60), s=sec%60; return (h? h+":"+String(m).padStart(2,"0") : m) + ":" + String(s).padStart(2,"0"); };
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem("kt:"+k); return v===null? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem("kt:"+k, JSON.stringify(v)); }catch(e){} }
+};
+const SPEEDS = [1, 1.25, 1.5, 2];
+const audioFile = c => c.audio.replace(/\.m4a$/, "." + AUDIO_EXT);
+const ICON_PLAY = '<svg class="i-play" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 3.5v13l10.5-6.5z"/></svg>';
+const ICON_PAUSE = '<svg class="i-pause" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3.5h3.6v13H5zM11.4 3.5H15v13h-3.6z"/></svg>';
+
+/* 統計 */
+(function stats(){
+  const v = CASES.filter(c => c.vsec>0), a = CASES.filter(c => c.asec>0);
+  const vt = v.reduce((s,c)=>s+c.vsec,0), at = a.reduce((s,c)=>s+c.asec,0);
+  $("#st-v").textContent = v.length; $("#st-vt").textContent = Math.round(vt/60);
+  $("#st-a").textContent = a.length;
+  const am = Math.round(at/60); $("#st-at").textContent = (am>=60? Math.floor(am/60)+"時間" : "") + (am%60) + "分";
+})();
+
+/* 日付印カウントダウン（JST基準） */
+(function countdown(){
+  const now = new Date(Date.now() + 9*3600e3);              // JSTの壁時計
+  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  const [Y,M,D] = EXAM_DAY.split("-").map(Number);
+  const diff = Math.round((Date.UTC(Y,M-1,D) - today) / 864e5);
+  const bot = $("#stamp-bot");
+  if (diff > 0) { $("#days").textContent = diff; $("#stamp").setAttribute("aria-label", `第22回試験 2026年11月21日まで あと${diff}日`); }
+  else if (diff === 0) { bot.textContent = "本日 試験日"; }
+  else { bot.textContent = "試験 実施済"; }
+})();
+
+/* 年表 */
+(function timeline(){
+  const items = [...CASES.map(c => ({...c, gap:false})), ...GAPS.map(g => ({...g, gap:true}))].sort((a,b)=>a.no-b.no);
+  $("#timeline").innerHTML = items.map(c => c.gap
+    ? `<li class="gap"><div class="row"><div class="node">${c.no}</div><div class="t-year">第${c.no}回・${c.year}</div><div class="t-type">素材なし</div></div></li>`
+    : `<li data-no="${c.no}"><a href="#c${c.no}"><div class="node">${c.no}</div><div class="t-year">第${c.no}回・${c.year}</div><div class="t-type">${esc(c.type || "音声で確認")}</div></a></li>`
+  ).join("");
+  $("#jump").innerHTML = CASES.map(c => `<a href="#c${c.no}" data-no="${c.no}" aria-label="第${c.no}回"><b>${c.no}</b>回</a>`).join("");
+})();
+
+/* 事件ファイル */
+function caseHTML(c){
+  const memo = c.facts ? `
+      <div class="part"><h4>事案の骨子</h4><p>${esc(c.facts)}</p></div>
+      <div class="side">
+        <div class="x"><h4><span>X（申請人・労働者）の言い分</span></h4><ul>${c.x.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>
+        <div class="y"><h4><span>Y（被申請人・会社）の言い分</span></h4><ul>${c.y.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>
+      </div>
+      <div class="part"><h4>判断の枠組み</h4><ul class="frame">${c.frame.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>
+      ${c.extra ? `<div class="part bonus"><p>${c.extra}</p></div>` : ""}
+      <div class="part"><h4>動画の締めの問い</h4><p>${esc(c.question)}</p></div>`
+    : `
+      <div class="part"><h4>事案の骨子</h4><p>この回は音声解説のみ収録しています。聴きながら、次の順で書き出してみてください。</p></div>
+      <div class="part"><ul>
+        <li>当事者（X・Y社）と、労働契約の形態</li>
+        <li>紛争に至る時系列</li>
+        <li>Xの言い分（求めるあっせんの内容と理由）</li>
+        <li>Y社の言い分（認否と主張）</li>
+        <li>争点と、使う判断枠組み</li>
+      </ul></div>`;
+  return `
+  <article class="case" id="c${c.no}" aria-labelledby="t${c.no}">
+    <div class="case-head">
+      <div class="case-no" aria-hidden="true"><small>第</small><b>${c.no}</b><small style="margin:4px 0 0">回</small></div>
+      <div class="case-meta">
+        <div class="tags"><span>${c.year}</span>${c.type ? `<span class="tag">${esc(c.type)}</span>` : `<span class="tag muted">テーマは音声で確認</span>`}</div>
+        <h3 id="t${c.no}">${esc(c.title)}</h3>
+      </div>
+      <div class="checks">
+        <button type="button" class="check" data-k="v${c.no}" aria-pressed="false">動画を見た</button>
+        <button type="button" class="check" data-k="a${c.no}" aria-pressed="false">音声を聴いた</button>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="media">
+        <p class="hook">${esc(c.hook)}</p>
+        <div class="media-label"><span>解説動画</span><span class="mono">${c.vsec? fmt(c.vsec) : ""}</span></div>
+        <div class="vid">
+          <video id="v${c.no}" controls playsinline preload="metadata" ${c.poster? `poster="${MEDIA_BASE+c.poster}"` : ""} src="${MEDIA_BASE+c.video}" data-file="${c.video}"></video>
+        </div>
+        <div class="aud" data-no="${c.no}">
+          <button type="button" class="aud-btn" aria-label="第${c.no}回の音声解説を再生">${ICON_PLAY}${ICON_PAUSE}</button>
+          <div class="aud-row"><strong>音声解説</strong><span class="aud-time mono"><span class="cur">0:00</span> / <span class="dur">${fmt(c.asec)}</span></span></div>
+          <input class="aud-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="第${c.no}回 音声の再生位置" id="seek${c.no}">
+          <audio preload="none" src="${MEDIA_BASE+audioFile(c)}" data-file="${audioFile(c)}"></audio>
+        </div>
+        <div class="tools">
+          <span>再生速度</span>
+          <span class="speed" role="group" aria-label="第${c.no}回の再生速度">${SPEEDS.map(s=>`<button type="button" data-s="${s}" aria-pressed="false">${Number.isInteger(s)? s.toFixed(1) : s}×</button>`).join("")}</span>
+          <span class="resumes"></span>
+        </div>
+      </div>
+      <div class="memo">${memo}</div>
+    </div>
+    <details class="mine" ${c.facts ? "" : "open"}>
+      <summary>自分の起案メモ <small>この端末のブラウザに自動保存</small></summary>
+      <div class="mine-body">
+        <textarea id="memo${c.no}" placeholder="例）求めるあっせんの内容：……&#10;理由：……&#10;Y社主張への認否：……"></textarea>
+        <div class="mine-foot"><span class="saved" aria-live="polite"></span><button type="button" class="copy">メモをコピー</button></div>
+      </div>
+    </details>
+  </article>`;
+}
+$("#cases").innerHTML = CASES.map(caseHTML).join("");
+
+/* 視聴チェック */
+function refreshProgress(){
+  const done = document.querySelectorAll('.check[aria-pressed="true"]:not(:disabled)').length;
+  const total = document.querySelectorAll('.check:not(:disabled)').length;
+  $("#prog").textContent = `${done}/${total}`;
+  CASES.forEach(c => {
+    const all = [...document.querySelectorAll(`#c${c.no} .check:not(:disabled)`)];
+    const ok = all.length && all.every(b => b.getAttribute("aria-pressed")==="true");
+    document.querySelectorAll(`[data-no="${c.no}"]`).forEach(el => { if (el.matches("#jump a")) el.classList.toggle("done", ok); if (el.matches("#timeline li")) el.classList.toggle("done", ok); });
+  });
+}
+document.querySelectorAll(".check").forEach(b => {
+  b.setAttribute("aria-pressed", store.get("chk:"+b.dataset.k, false) ? "true" : "false");
+  b.addEventListener("click", () => {
+    const on = b.getAttribute("aria-pressed") !== "true";
+    b.setAttribute("aria-pressed", on); store.set("chk:"+b.dataset.k, on); refreshProgress();
+  });
+});
+
+/* 再生速度（全プレーヤー共通で記憶） */
+let speed = store.get("speed", 1);
+function applySpeed(){
+  document.querySelectorAll("video, audio").forEach(m => { m.playbackRate = speed; m.defaultPlaybackRate = speed; });
+  document.querySelectorAll(".speed button").forEach(b => b.setAttribute("aria-pressed", Number(b.dataset.s) === speed));
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest(".speed button"); if (!b) return;
+  speed = Number(b.dataset.s); store.set("speed", speed); applySpeed();
+});
+
+/* 同時に1つだけ再生 ＋ 再生位置の記憶 */
+const allMedia = () => [...document.querySelectorAll("video, audio")];
+document.addEventListener("play", e => {
+  allMedia().forEach(m => { if (m !== e.target && !m.paused) m.pause(); });
+  e.target.playbackRate = speed;
+}, true);
+let lastSave = 0;
+document.addEventListener("timeupdate", e => {
+  const m = e.target, now = Date.now();
+  if (now - lastSave < 4000) return; lastSave = now;
+  if (m.currentTime > 5) store.set("pos:"+m.dataset.file, Math.floor(m.currentTime));
+}, true);
+document.addEventListener("ended", e => {
+  const m = e.target; store.set("pos:"+m.dataset.file, 0);
+  const no = (m.closest(".case")||{}).id?.slice(1);
+  const k = (m.tagName === "VIDEO" ? "v" : "a") + no;
+  const btn = document.querySelector(`.check[data-k="${k}"]`);
+  if (btn && btn.getAttribute("aria-pressed") !== "true") { btn.setAttribute("aria-pressed", "true"); store.set("chk:"+k, true); refreshProgress(); }
+}, true);
+
+/* 続きから再生ボタン */
+function addResume(m, label){
+  const pos = store.get("pos:"+m.dataset.file, 0);
+  if (!pos || pos < 10) return;
+  const box = m.closest(".case").querySelector(".resumes");
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "resume";
+  b.textContent = `${label}を ${fmt(pos)} から再開`;
+  b.addEventListener("click", () => { m.currentTime = pos; m.play().catch(()=>{}); b.remove(); });
+  box.appendChild(b);
+}
+
+/* 動画：ファイルが無い場合の案内 */
+document.querySelectorAll("video").forEach(v => {
+  const missing = () => {
+    if (v.dataset.missing) return; v.dataset.missing = "1";
+    const wrap = v.parentElement;
+    const d = document.createElement("div"); d.className = "vid-missing";
+    d.innerHTML = `<b>動画ファイルが見つかりません</b><span>このページと同じフォルダに次のファイルを置くと再生できます。</span><code>${esc(v.dataset.file)}</code>`;
+    wrap.appendChild(d); v.hidden = true;
+    const chk = document.querySelector(`.check[data-k="v${wrap.closest(".case").id.slice(1)}"]`);
+    if (chk) { chk.disabled = true; chk.title = "動画ファイル未配置"; }
+    refreshProgress();
+  };
+  v.addEventListener("error", missing);
+  v.querySelector("source")?.addEventListener("error", missing);
+  if (v.error) missing();
+  addResume(v, "動画");
+});
+
+/* 音声プレーヤー */
+document.querySelectorAll(".aud").forEach(box => {
+  const a = $("audio", box), btn = $(".aud-btn", box), seek = $(".aud-seek", box), cur = $(".cur", box), dur = $(".dur", box);
+  const c = CASES.find(x => x.no === Number(box.dataset.no));
+  let total = c.asec, dragging = false;
+  btn.addEventListener("click", () => { if (a.paused) { a.play().catch(()=>{}); } else { a.pause(); } });
+  a.addEventListener("play", () => { box.classList.add("playing"); btn.setAttribute("aria-label", `第${c.no}回の音声解説を一時停止`); });
+  a.addEventListener("pause", () => { box.classList.remove("playing"); btn.setAttribute("aria-label", `第${c.no}回の音声解説を再生`); });
+  a.addEventListener("loadedmetadata", () => { if (isFinite(a.duration)) { total = a.duration; dur.textContent = fmt(total); } });
+  a.addEventListener("timeupdate", () => { if (!dragging) seek.value = Math.round(a.currentTime / total * 1000) || 0; cur.textContent = fmt(a.currentTime); });
+  seek.addEventListener("input", () => { dragging = true; cur.textContent = fmt(seek.value / 1000 * total); });
+  seek.addEventListener("change", () => { a.currentTime = seek.value / 1000 * total; dragging = false; });
+  a.addEventListener("error", () => {
+    if ($(".aud-err", box)) return;
+    const p = document.createElement("p"); p.className = "aud-err";
+    p.textContent = `音声ファイルが見つかりません：${a.dataset.file}（このページと同じフォルダに置いてください）`;
+    box.appendChild(p); box.classList.remove("playing");
+  });
+  addResume(a, "音声");
+});
+
+/* 自分の起案メモ（この端末に保存） */
+document.querySelectorAll(".mine textarea").forEach(t => {
+  const key = "memo:"+t.id, saved = t.closest(".mine").querySelector(".saved");
+  t.value = store.get(key, "");
+  let timer;
+  t.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(() => { store.set(key, t.value); saved.textContent = "保存しました"; setTimeout(()=>saved.textContent="", 1600); }, 500); });
+  t.closest(".mine").querySelector(".copy").addEventListener("click", async e => {
+    try { await navigator.clipboard.writeText(t.value); e.target.textContent = "コピーしました"; }
+    catch(err){ t.focus(); t.select(); e.target.textContent = "選択しました（コピーしてください）"; }
+    setTimeout(()=> e.target.textContent = "メモをコピー", 1800);
+  });
+});
+
+applySpeed();
+refreshProgress();
+if (location.hash && /^#c\d+$/.test(location.hash)) { const el = document.querySelector(location.hash); if (el) el.scrollIntoView(); }
+</script>
+</body>
+</html>
